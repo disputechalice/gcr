@@ -10,7 +10,3 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - run: |
-          docker build . --tag ghcr.io/disputechalice/testcont:latest
-          docker run ghcr.io/disputechalice/testcont:latest
-          docker push ghcr.io/disputechalice/testcont:latest
