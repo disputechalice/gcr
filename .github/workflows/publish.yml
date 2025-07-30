@@ -1,9 +1,9 @@
 on:
   workflow_dispatch:
 jobs:
-  env:
-    TAG: ghcr.io/disputechalice/gcr:v1
   publish:
+    env:
+      TAG: ghcr.io/disputechalice/gcr:v1
     runs-on: ubuntu-latest
     permissions:
       contents: read
