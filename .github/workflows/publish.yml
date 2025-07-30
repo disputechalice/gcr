@@ -2,16 +2,15 @@ name: publish
 on:
   workflow_dispatch:
 jobs:
-  publish-job:
+  publish:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-      attestations: write
-      id-token: write
     steps:
-      - uses: actions/checkout@v4
-      - name: GHCR Login
+      - name: Repository Checkout
+        uses: actions/checkout@v4
+      - name: Registry Login
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
