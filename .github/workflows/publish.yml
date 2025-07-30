@@ -1,5 +1,6 @@
 name: publish
-on: [push]
+on:
+  push
 jobs:
   publish-job:
     runs-on: ubuntu-latest
@@ -18,7 +19,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the Docker image
         run: |
-          docker build . --tag ghcr.io/disputechalice/testcont:latest
-          docker run ghcr.io/disputechalice/testcont:latest
-          docker push ghcr.io/disputechalice/testcont:latest
+          docker build . --tag ghcr.io/disputechalice/gcr:latest
+          docker run ghcr.io/disputechalice/gcr:latest
+          docker push ghcr.io/disputechalice/gcr:latest
           
