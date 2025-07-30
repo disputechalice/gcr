@@ -3,7 +3,7 @@ on:
 jobs:
   build-publish:
     env:
-      SOURCE: ${{ repositoryUrl }}
+      SOURCE: ${{ github.repositoryUrl }}
       TAG: ghcr.io/${{ github.repository }}:v1
       
     runs-on: ubuntu-latest
