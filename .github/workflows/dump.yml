@@ -1,0 +1,11 @@
+on:
+  workflow_dispatch:
+jobs:
+  build-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump github context
+        env:
+         GH: ${{ toJson(github) }}
+        shell: bash
+        run:   echo "$GH"
