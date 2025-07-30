@@ -12,7 +12,9 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
       - name: Add Image Source
-        run: echo "LABEL org.opencontainers.image.source=https://github.com/disputechalice/gcr" >> Dockerfile
+        run: |
+          cat > Dockerfile <<< \
+          "LABEL org.opencontainers.image.source=https://github.com/disputechalice/gcr"
       - name: Build
         run: docker build . --tag ${{ env.TAG }}
       - name: Run
