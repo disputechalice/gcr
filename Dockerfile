@@ -1,4 +1,4 @@
-FROM debian:12
+FROM docker.io/debian:12
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update
