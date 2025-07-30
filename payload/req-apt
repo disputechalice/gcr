@@ -1,1 +1,3 @@
-echo "NOTHING TO BE SEEN HERE"
+export DEBIAN_FRONTEND=noninteractive
+apt-get -qq update
+apt-get -qqo Dpkg::Use-Pty=0 satisfy "$@"
