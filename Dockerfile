@@ -1,13 +1,13 @@
 FROM debian:latest
 
-WORKDIR /payload
-COPY payload /payload
+WORKDIR /
+COPY Dockerfile /
 
 RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update
 RUN apt-get -qqo Dpkg::Use-Pty=0 satisfy \
     wget build-essential
 
-CMD [ "echo", "This is container so and so." ]
+CMD [ "cat", "Dockerfile" ]
 
 
