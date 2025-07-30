@@ -3,7 +3,7 @@ FROM docker.io/debian:12
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update
 RUN apt-get -qqo Dpkg::Use-Pty=0 satisfy \
-    wget build-essential
+    wget lintian
 
 COPY Dockerfile /
 CMD [ "cat", "Dockerfile" ]
