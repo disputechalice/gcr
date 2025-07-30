@@ -3,7 +3,7 @@ on:
 jobs:
   build-publish:
     env:
-      SOURCE: ${{ github.repositoryUrl }}
+      SOURCE: ${{ github.event.repository.html_url }}
       IMAGE: ghcr.io/${{ github.repository }}:latest
     runs-on: ubuntu-latest
     permissions:
@@ -16,7 +16,7 @@ jobs:
       - name: Add Image Source
         run: |
           cat >> Dockerfile <<< \
-          "LABEL org.opencontainers.image.source=$SOURCE"
+          'LABEL org.opencontainers.image.source="'$SOURCE'"'
 
       - name: Build
         run: docker build . --tag ${{ env.IMAGE }}
