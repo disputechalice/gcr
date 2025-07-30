@@ -3,7 +3,7 @@ on:
 jobs:
   publish:
     env:
-      TAG: ghcr.io/disputechalice/gcr:v1
+      TAG: ghcr.io/${{ github.repository }}:v1
     runs-on: ubuntu-latest
     permissions:
       contents: read
