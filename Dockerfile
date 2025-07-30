@@ -6,8 +6,8 @@ COPY payload /payload
 RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update
 RUN apt-get -qqo Dpkg::Use-Pty=0 satisfy \
-  wget
+    wget build-essential
 
-CMD [ "bash", "hello.sh" ]
+CMD echo "This is container so and so."
 
 
