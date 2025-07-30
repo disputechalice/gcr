@@ -8,6 +8,6 @@ RUN apt-get -qq update
 RUN apt-get -qqo Dpkg::Use-Pty=0 satisfy \
     wget build-essential
 
-CMD echo "This is container so and so."
+CMD [ "echo", "This is container so and so." ]
 
 
