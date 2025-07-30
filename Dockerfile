@@ -1,3 +1,5 @@
+LABEL org.opencontainers.image.description This is a custom image.
+
 FROM debian:12
 
 RUN export DEBIAN_FRONTEND=noninteractive
