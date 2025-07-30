@@ -23,3 +23,9 @@ jobs:
         run: docker run ${{ env.TAG }}
       - name: Push
         run: docker push ${{ env.TAG }}
+      
+      - name: Dump github context
+        env:
+         GH: ${{ toJson(github) }}
+        shell: bash
+        run:   echo "$GH"
