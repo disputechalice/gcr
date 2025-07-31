@@ -16,7 +16,7 @@ jobs:
 
       - name: Append Source Label
         run: |
-          cat >> Dockerfile <<< \
+          cat >> Containerfile <<< \
           'LABEL org.opencontainers.image.source="'$SOURCE'"'
 
       - name: Build Image
