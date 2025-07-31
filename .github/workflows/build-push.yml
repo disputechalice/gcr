@@ -20,7 +20,7 @@ jobs:
           'LABEL org.opencontainers.image.source="'$SOURCE'"'
 
       - name: Build Image
-        run: docker build . --tag ${{ env.IMAGE }}
+        run: podman build . --tag ${{ env.IMAGE }}
 
       - name: Run Image
         run: docker run ${{ env.IMAGE }}
