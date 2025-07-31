@@ -5,8 +5,8 @@ RUN apt-get -qq update
 RUN apt-get -qqo Dpkg::Use-Pty=0 satisfy \
     wget lintian
 
-COPY Dockerfile /
-CMD [ "cat", "Dockerfile" ]
+COPY Containerfile /
+CMD [ "cat", "Containerfile" ]
 
 LABEL org.opencontainers.image.description="This is a custom image."
 LABEL org.opencontainers.image.authors="Here we go."
