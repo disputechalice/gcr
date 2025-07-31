@@ -23,7 +23,7 @@ jobs:
         run: podman build . --tag ${{ env.IMAGE }}
 
       - name: Run Image
-        run: docker run ${{ env.IMAGE }}
+        run: podman run ${{ env.IMAGE }}
 
       - name: Login to Registry
         uses: docker/login-action@v3
@@ -33,4 +33,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to Registry
-        run: docker push ${{ env.IMAGE }}
+        run: podman push ${{ env.IMAGE }}
