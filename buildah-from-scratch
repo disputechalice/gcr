@@ -4,7 +4,7 @@ set -ex
 container=$(buildah from scratch)
 mountpoint=$(buildah mount "$container")
 
-debootstrap --variant=minbase --include=bash,wget,lintian bookworm "$mountpoint"
+debootstrap --variant=minbase --include=bash,wget,ca-certificates bookworm "$mountpoint"
 
 buildah config \
     --label "org.opencontainers.image.source=$SOURCE" \
