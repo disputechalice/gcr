@@ -10,4 +10,4 @@ buildah run "$c" bash -vc '
     # done
 '
 
-buildah commit "$c" gcr:latest
+buildah commit "$c" ghcr.io/disputechalice/gcr:latest
