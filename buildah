@@ -12,11 +12,10 @@ buildah run "$container" bash -vc '
     apt-get -qqo Dpkg::Use-Pty=0 satisfy \
         wget
 '
-
-buildah commit --format docker "$container" gcr
-
 buildah manifest create \
     --annotation "org.opencontainers.image.description=$DESCRIPTION" \
     ghcr.io/disputechalice/gcr:latest
 
 buildah tag gcr ghcr.io/disputechalice/gcr:latest
+
+buildah commit --format docker "$container" gcr
