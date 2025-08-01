@@ -1,2 +1,13 @@
-ctr=$(buildah from docker.io/library/debian:12)
+#!/bin/bash
 
+c=$(buildah from docker.io/library/debian:12)
+
+buildah config --env DEBIAN_FRONTEND=noninteractive "$c"
+
+buildah run "$c" /bin/bash -c '\
+    apt-get -qq update \
+    apt-get -qqo Dpkg::Use-Pty=0 satisfy \
+        wget
+'
+
+buildah commit "$c" gcr:latest
