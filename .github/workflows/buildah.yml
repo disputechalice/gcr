@@ -24,7 +24,7 @@ jobs:
 
       - name: Build
         run: |
-          sudo apt-get satisfy -yqq debootstrap
+          sudo apt-get satisfy -yqq debian-archive-keyring debootstrap
           export IMAGE TAG SOURCE AUTHORS DESCRIPTION
           buildah unshare ./buildah-from-scratch
 
