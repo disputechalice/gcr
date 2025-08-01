@@ -5,4 +5,4 @@ apt-get -qq update
 apt-get -qqo Dpkg::Use-Pty=0 satisfy \
     dpkg-dev lintian
 
-update-locale LANG=en_CA.UTF-8 LC_ALL=en_US.UTF-8
+update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
