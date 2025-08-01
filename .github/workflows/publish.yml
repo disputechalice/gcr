@@ -22,7 +22,7 @@ jobs:
       - name: Append Source Label
         run: |
           cat >> "$CONTAINERFILE" <<< \
-          'LABEL org.opencontainers.image.source="'$SOURCE'"'
+          'LABEL org.opencontainers.image.source "'$SOURCE'"'
 
       - name: Build Image
         run: podman build . --tag "$IMAGE"
