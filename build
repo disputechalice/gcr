@@ -25,6 +25,7 @@ buildah config \
     "$container"
 
 buildah run "$container" bash -exc "$(cat run)"
+
 buildah commit --format docker "$container" working-image
 
 buildah tag working-image "$IMAGE:$TAG"
