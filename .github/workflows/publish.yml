@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
 
 env:
-  CONTAINERFILE: Dockerfile
   IMAGE: ghcr.io/${{ github.repository }}
   TAG: latest
   SOURCE: ${{ github.event.repository.html_url }}
@@ -25,14 +24,14 @@ jobs:
 
       - name: Build
         run: |
-          podman build . \
+          docker build . \
             --tag "$IMAGE:$TAG" \
             --label "org.opencontainers.image.source=$SOURCE" \
             --label "org.opencontainers.image.authors=$AUTHORS" \
             --label "org.opencontainers.image.description=$DESCRIPTION"
 
       - name: Run
-        run: podman run "$IMAGE:$TAG"
+        run: docker run "$IMAGE:$TAG"
 
       - name: Login to Registry
         uses: docker/login-action@v3
@@ -42,4 +41,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to Registry
-        run: podman push "$IMAGE:$TAG"
+        run: docker push "$IMAGE:$TAG"
