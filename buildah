@@ -1,13 +1,17 @@
 #!/bin/bash
 
-c=$(buildah from docker.io/library/debian:12)
+container=$(buildah from docker.io/library/debian:12)
 
-buildah run "$c" bash -vc '
+buildah config \
+    --label description="here we go" \
+    $container
+
+buildah run "$container" bash -vc '
     export DEBIAN_FRONTEND=noninteractive
     apt-get -qq update
     apt-get -qqo Dpkg::Use-Pty=0 satisfy \
         wget
-    # done
 '
 
-buildah commit "$c" ghcr.io/disputechalice/gcr:latest
+buildah commit --format docker "$container" \
+    ghcr.io/disputechalice/gcr:latest
