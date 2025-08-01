@@ -4,6 +4,7 @@ on:
 
 env:
   CONTAINERFILE: Dockerfile
+  DESCRIPTION: "Here we go..."
   IMAGE: ghcr.io/${{ github.repository }}:latest
   SOURCE: ${{ github.event.repository.html_url }}
 
@@ -25,7 +26,10 @@ jobs:
           'LABEL org.opencontainers.image.source "'$SOURCE'"'
 
       - name: Build Image
-        run: podman build . --tag "$IMAGE"
+        run: |
+          podman build . \
+            --tag "$IMAGE" \
+            --label "org.opencontainers.image.description=$DESCRIPTION"
 
       - name: Run Image
         run: podman run "$IMAGE"
