@@ -6,12 +6,7 @@ buildah config \
     --label "org.opencontainers.image.description=$DESCRIPTION" \
     $container
 
-buildah run "$container" bash -vc '
-    export DEBIAN_FRONTEND=noninteractive
-    apt-get -qq update
-    apt-get -qqo Dpkg::Use-Pty=0 satisfy \
-        wget
-'
+buildah run "$container" bash -vc "$(cat run)"
 
 buildah commit --format docker "$container" gcr
 
