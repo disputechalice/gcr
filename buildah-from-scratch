@@ -2,6 +2,8 @@
 set -ex
 
 container=$(buildah from scratch)
+
+buildah unshare
 mountpoint=$(buildah mount "$container")
 
 debootstrap --force-check-gpg \
