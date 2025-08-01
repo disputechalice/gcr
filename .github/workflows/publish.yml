@@ -6,9 +6,8 @@ env:
   IMAGE: ghcr.io/${{ github.repository }}
   TAG: latest
   SOURCE: ${{ github.event.repository.html_url }}
-  AUTHORS: XYZ
-  DESCRIPTION: Here we go...
-
+  AUTHORS: ${{ vars.AUTHORS }}
+  DESCRIPTION: ${{ vars.DESCRIPTION }}
 
 jobs:
   build-push:
