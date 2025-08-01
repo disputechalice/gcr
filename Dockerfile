@@ -8,5 +8,4 @@ RUN apt-get -qqo Dpkg::Use-Pty=0 satisfy \
 COPY Dockerfile /
 CMD [ "cat", "Dockerfile" ]
 
-LABEL org.opencontainers.image.description DESCRIPTION_HERE
 LABEL org.opencontainers.image.authors "Here we go."
