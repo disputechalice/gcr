@@ -13,5 +13,6 @@ buildah run "$container" bash -vc '
         wget
 '
 
-buildah commit --format docker "$container" \
-    ghcr.io/disputechalice/gcr:latest
+buildah commit --format docker "$container" gcr
+
+buildah tag gcr ghcr.io/disputechalice/gcr:latest
