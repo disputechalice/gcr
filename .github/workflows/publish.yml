@@ -4,7 +4,8 @@ on:
 
 env:
   CONTAINERFILE: Dockerfile
-  TAG: latest
+  IMAGE: ghcr.io/${{ github.repository }}:latest
+  SOURCE: ${{ github.event.repository.html_url }}
 
 jobs:
   build-push:
@@ -13,9 +14,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    env:
-      SOURCE: ${{ github.event.repository.html_url }}
-      IMAGE: ghcr.io/${{ github.repository }}:${{ env.TAG }}
 
     steps:
       - name: Checkout Repository
