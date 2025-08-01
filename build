@@ -1,18 +1,30 @@
 #!/bin/bash
 set -ex
 
-container=$(buildah from docker.io/library/debian:12)
+[[ -n $SOURCE ]]
+[[ -n $AUTHORS ]]
+[[ -n $DESCRIPTION ]]
+
+container=$(buildah from scratch)
+
+mountpoint=$(buildah mount "$container")
+
+debootstrap --force-check-gpg \
+    --variant=minbase \
+    --include=bash,wget \
+    bookworm \
+    "$mountpoint"
 
 buildah config \
     --label "org.opencontainers.image.source=$SOURCE" \
     --label "org.opencontainers.image.authors=$AUTHORS" \
     --label "org.opencontainers.image.description=$DESCRIPTION" \
+    --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     --env LANG=en_US.UTF-8 \
     --env LC_ALL=en_US.UTF-8 \
-    $container
+    "$container"
 
 buildah run "$container" bash -exc "$(cat run)"
-
 buildah commit --format docker "$container" working-image
 
 buildah tag working-image "$IMAGE:$TAG"
