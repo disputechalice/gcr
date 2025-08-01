@@ -1,1 +1,2 @@
-ctr=$(buildah from debian:12)
+ctr=$(buildah from docker.io/library/debian:12)
+
