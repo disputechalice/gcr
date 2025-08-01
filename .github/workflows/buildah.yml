@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: |
           export IMAGE TAG SOURCE AUTHORS DESCRIPTION
-          ./buildah-from-scratch
+          buildah unshare ./buildah-from-scratch
 
       - name: Run
         run: podman run --pull=never "$IMAGE:$TAG"
