@@ -3,7 +3,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
+  build-push:
+    name: Build & Push
     runs-on: ubuntu-latest
     permissions:
       contents: read
