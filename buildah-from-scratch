@@ -14,7 +14,9 @@ buildah config \
     --label "org.opencontainers.image.source=$SOURCE" \
     --label "org.opencontainers.image.authors=$AUTHORS" \
     --label "org.opencontainers.image.description=$DESCRIPTION" \
-    $container
+    --env LANG=en_US.UTF-8 \
+    --env LC_ALL=en_US.UTF-8 \
+    "$container"
 
 buildah run "$container" bash -exc "$(cat run)"
 buildah commit --format docker "$container" working-image
