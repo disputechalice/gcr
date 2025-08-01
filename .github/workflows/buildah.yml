@@ -24,7 +24,7 @@ jobs:
 
       - name: Build
         run: |
-          export AUTHORS DESCRIPTION
+          export IMAGE TAG SOURCE AUTHORS DESCRIPTION
           ./buildah
 
       - name: Run
