@@ -1,8 +1,8 @@
 #!/bin/bash
 
-locale-gen en_US.UTF-8
-
 export DEBIAN_FRONTEND=noninteractive
 apt-get -qq update
 apt-get -qqo Dpkg::Use-Pty=0 satisfy \
     dpkg-dev lintian
+
+update-locale LANG=en_CA.UTF-8 LC_ALL=en_US.UTF-8
