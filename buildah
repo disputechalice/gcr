@@ -4,7 +4,7 @@ c=$(buildah from docker.io/library/debian:12)
 
 buildah config --env DEBIAN_FRONTEND=noninteractive "$c"
 
-buildah run "$c" <<< 'EOF'
+buildah run "$c" << 'EOF'
     apt-get -qq update \
     apt-get -qqo Dpkg::Use-Pty=0 satisfy \
         wget
