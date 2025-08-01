@@ -23,11 +23,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build
-        run: |
+        run: 
+          export AUTHORS DESCRIPTION
           ./buildah
 
       - name: Run
-        run: docker run "$IMAGE:$TAG"
+        run: podman run "$IMAGE:$TAG"
 
       - name: Log in to Registry
         uses: redhat-actions/podman-login@v1

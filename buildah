@@ -3,7 +3,7 @@
 container=$(buildah from docker.io/library/debian:12)
 
 buildah config \
-    --label description="here we go" \
+    --label description="$DESCRIPTION" \
     $container
 
 buildah run "$container" bash -vc '
