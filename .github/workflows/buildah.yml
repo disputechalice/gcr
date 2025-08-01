@@ -28,10 +28,10 @@ jobs:
           ./buildah
 
       - name: Run
-        run: podman run "$IMAGE:$TAG"
+        run: podman run --pull=never "$IMAGE:$TAG"
 
       - name: Log in to Registry
-        uses: redhat-actions/podman-login@v1
+        uses: redhat-actions/podman-login@v1.7
         with:
           username: ${{ github.actor }}
           password:  ${{ github.token }}
