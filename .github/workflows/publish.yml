@@ -1,9 +1,11 @@
 name: Publish
 on:
   workflow_dispatch:
+
 env:
   CONTAINERFILE: Dockerfile
   TAG: latest
+
 jobs:
   build-push:
     name: Build & Push
