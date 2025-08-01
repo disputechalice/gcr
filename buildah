@@ -1,13 +1,14 @@
 #!/bin/bash
+set -e
 
 container=$(buildah from docker.io/library/debian:12)
 
 buildah config \
-    --label "org.opencontainers.image.description=$DESCRIPTION" \
+    --label "org.opencontainers.image.source=$SOURCE" \
+    --label "org.opencontainers.image.authors=$AUTHORS" \
+    --label "org.opencontainers.image.description=$DESCRIPTION"    
     $container
 
 buildah run "$container" bash -vc "$(cat run)"
-
-buildah commit --format docker "$container" gcr
-
-buildah tag gcr ghcr.io/disputechalice/gcr:latest
+buildah commit --format docker "$container" image
+buildah tag image "$IMAGE:$TAG"
