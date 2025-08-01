@@ -1,7 +1,8 @@
 name: Publish
 on:
   workflow_dispatch:
-
+env:
+  CONTAINERFILE: Dockerfile
 jobs:
   build-push:
     name: Build & Push
@@ -19,7 +20,7 @@ jobs:
 
       - name: Append Source Label
         run: |
-          cat >> Containerfile <<< \
+          cat >> "$CONTAINERFILE" <<< \
           'LABEL org.opencontainers.image.source="'$SOURCE'"'
 
       - name: Build Image
