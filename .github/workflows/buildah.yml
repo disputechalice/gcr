@@ -19,17 +19,22 @@ jobs:
       packages: write
 
     steps:
+      - name: Prep Debian archive keyring, debootstrap
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          sudo apt-get -qq update
+          sudo apt-get -qqo Dpkg::Use-Pty=0 satisfy \
+            debian-archive-keyring debootstrap
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Debootstrap
+      - name: Build container image
         run: |
-          export DEBIAN_FRONTEND=noninteractive
-          sudo apt-get satisfy -yqq debian-archive-keyring debootstrap
           export IMAGE TAG SOURCE AUTHORS DESCRIPTION
           buildah unshare ./buildah-from-scratch
 
-      - name: Run
+      - name: Run check
         run: podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release
 
       - name: Log in to Registry
