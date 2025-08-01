@@ -25,10 +25,10 @@ jobs:
           'LABEL org.opencontainers.image.source="'$SOURCE'"'
 
       - name: Build Image
-        run: podman build . --tag ${{ env.IMAGE }}
+        run: podman build . --tag "$IMAGE"
 
       - name: Run Image
-        run: podman run ${{ env.IMAGE }}
+        run: podman run "$IMAGE"
 
       - name: Login to Registry
         uses: docker/login-action@v3
@@ -38,4 +38,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to Registry
-        run: podman push ${{ env.IMAGE }}
+        run: podman push "$IMAGE"
