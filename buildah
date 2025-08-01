@@ -17,4 +17,4 @@ buildah commit --format docker "$container" gcr
 
 buildah tag gcr ghcr.io/disputechalice/gcr:latest
 
-buildah push "$container" docker://ghcr.io/disputechalice/gcr:latest
+buildah push gcr docker://ghcr.io/disputechalice/gcr:latest
