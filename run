@@ -2,6 +2,9 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
+ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
+dpkg-reconfigure tzdata
+
 cat > /etc/locale.gen <<< "C.UTF-8 UTF-8"
 cat > /etc/default/locale <<< "C.UTF-8"
 debconf-set-selections <<< "locales locales/default_environment_locale select C.UTF-8"
