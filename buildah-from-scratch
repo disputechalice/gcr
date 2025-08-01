@@ -4,7 +4,6 @@ set -ex
 container=$(buildah from scratch)
 mountpoint=$(buildah mount "$container")
 
-apt install -y debootstrap
 debootstrap --variant=minbase bookworm "$mountpoint"
 
 buildah config \

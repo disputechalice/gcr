@@ -24,8 +24,9 @@ jobs:
 
       - name: Build
         run: |
+          sudo apt install -y debootstrap
           export IMAGE TAG SOURCE AUTHORS DESCRIPTION
-          buildah unshare ./buildah-from-scratch
+          ./buildah-from-scratch
 
       - name: Run
         run: podman run --pull=never "$IMAGE:$TAG"
