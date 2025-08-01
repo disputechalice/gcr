@@ -37,4 +37,4 @@ jobs:
           registry: ghcr.io/${{ github.repository_owner }}
 
       - name: Push to Registry
-        run: buildah push docker://"$IMAGE:$TAG"
+        run: buildah push "$IMAGE:$TAG"
