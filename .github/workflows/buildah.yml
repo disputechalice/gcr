@@ -29,7 +29,7 @@ jobs:
           buildah unshare ./buildah-from-scratch
 
       - name: Run
-        run: podman run --pull=never --entrypoint="/usr/bin/uname -a" "$IMAGE:$TAG"
+        run: podman run --pull=never "$IMAGE:$TAG" /usr/bin/uname -a
 
       - name: Log in to Registry
         uses: redhat-actions/podman-login@v1.7
