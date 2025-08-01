@@ -4,7 +4,7 @@ set -ex
 container=$(buildah from scratch)
 mountpoint=$(buildah mount "$container")
 
-debootstrap --variant=minbase --include=bash,wget bookworm "$mountpoint"
+debootstrap --variant=minbase --include=bash,wget,lintian,diffoscope bookworm "$mountpoint"
 
 buildah config \
     --label "org.opencontainers.image.source=$SOURCE" \
@@ -12,7 +12,7 @@ buildah config \
     --label "org.opencontainers.image.description=$DESCRIPTION" \
     $container
 
-buildah run "$container" bash -exc "$(cat run)"
+# buildah run "$container" bash -exc "$(cat run)"
 buildah commit --format docker "$container" working-image
 
 buildah tag working-image "$IMAGE:$TAG"
