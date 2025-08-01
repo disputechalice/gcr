@@ -24,12 +24,12 @@ jobs:
 
       - name: Build
         run: |
-          sudo apt install -y debootstrap
+          sudo apt-get install -y debootstrap
           export IMAGE TAG SOURCE AUTHORS DESCRIPTION
           buildah unshare ./buildah-from-scratch
 
       - name: Run
-        run: podman run --pull=never "$IMAGE:$TAG" "test" "-d" "/root"
+        run: podman run --pull=never "$IMAGE:$TAG" uname -a
 
       - name: Log in to Registry
         uses: redhat-actions/podman-login@v1.7
