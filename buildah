@@ -10,6 +10,6 @@ buildah config \
     $container
 
 buildah run "$container" bash -exc "$(cat run)"
-buildah commit --format docker "$container" image
+buildah commit "$container" image #--format docker
 
 buildah tag image "$IMAGE:$TAG"
