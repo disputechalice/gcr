@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
 env:
   CONTAINERFILE: Dockerfile
+  TAG: latest
 jobs:
   build-push:
     name: Build & Push
@@ -12,7 +13,7 @@ jobs:
       packages: write
     env:
       SOURCE: ${{ github.event.repository.html_url }}
-      IMAGE: ghcr.io/${{ github.repository }}:latest
+      IMAGE: ghcr.io/${{ github.repository }}:${{ env.TAG }}
 
     steps:
       - name: Checkout Repository
