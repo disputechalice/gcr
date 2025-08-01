@@ -1,15 +1,17 @@
-name: Build Push
+name: Publish
 on:
   workflow_dispatch:
+
 jobs:
   build-push:
-    env:
-      SOURCE: ${{ github.event.repository.html_url }}
-      IMAGE: ghcr.io/${{ github.repository }}:latest
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
+    env:
+      SOURCE: ${{ github.event.repository.html_url }}
+      IMAGE: ghcr.io/${{ github.repository }}:latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
