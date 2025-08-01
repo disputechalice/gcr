@@ -4,6 +4,8 @@ export DEBIAN_FRONTEND=noninteractive
 
 cat > /etc/locale.gen <<< "C.UTF-8 UTF-8"
 cat > /etc/default/locale <<< "C.UTF-8"
+debconf-set-selections <<< "locales locales/default_environment_locale select C.UTF-8"
+
 dpkg-reconfigure locales
 update-locale LANG=C.UTF-8
 
