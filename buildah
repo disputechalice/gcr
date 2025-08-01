@@ -3,7 +3,7 @@
 container=$(buildah from docker.io/library/debian:12)
 
 buildah config \
-    --label own="$DESCRIPTION" \
+    --label "org.opencontainers.image.description=$DESCRIPTION" \
     $container
 
 buildah run "$container" bash -vc '
@@ -12,10 +12,7 @@ buildah run "$container" bash -vc '
     apt-get -qqo Dpkg::Use-Pty=0 satisfy \
         wget
 '
-buildah manifest create \
-    --annotation "org.opencontainers.image.description=$DESCRIPTION" \
-    ghcr.io/disputechalice/gcr:latest
-
-buildah tag gcr ghcr.io/disputechalice/gcr:latest
 
 buildah commit --format docker "$container" gcr
+
+buildah tag gcr ghcr.io/disputechalice/gcr:latest
