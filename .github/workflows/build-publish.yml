@@ -1,9 +1,9 @@
-name: Build & Publish
+name: Publish
 on:
   workflow_dispatch:
 
 jobs:
-  build-push:
+  publish:
     runs-on: ubuntu-latest
     permissions:
       contents: read
