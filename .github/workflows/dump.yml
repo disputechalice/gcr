@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
 jobs:
-  build-publish:
+  dump:
     runs-on: ubuntu-latest
     steps:
       - name: Dump github context
