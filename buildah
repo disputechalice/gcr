@@ -3,7 +3,7 @@
 c=$(buildah from docker.io/library/debian:12)
 
 buildah run "$c" bash -vc '
-    DEBIAN_FRONTEND=noninteractive
+    export DEBIAN_FRONTEND=noninteractive
     apt-get -qq update
     apt-get -qqo Dpkg::Use-Pty=0 satisfy \
         wget
