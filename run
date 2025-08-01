@@ -1,5 +1,7 @@
 #!/bin/bash
 
+locale-gen en_US.UTF-8
+
 export DEBIAN_FRONTEND=noninteractive
 apt-get -qq update
 apt-get -qqo Dpkg::Use-Pty=0 satisfy \
