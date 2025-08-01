@@ -3,7 +3,8 @@
 container=$(buildah from docker.io/library/debian:12)
 
 buildah config \
-    --label description="$DESCRIPTION" \
+    --label org.opencontainers.image.description \
+        DESCRIPTION="$DESCRIPTION" \
     $container
 
 buildah run "$container" bash -vc '
