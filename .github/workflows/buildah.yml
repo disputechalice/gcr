@@ -32,7 +32,7 @@ jobs:
       - name: Build container image
         run: |
           export IMAGE TAG SOURCE AUTHORS DESCRIPTION
-          ./buildah-from-scratch
+          buildah unshare ./build
 
       - name: Run check
         run: podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release
