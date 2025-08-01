@@ -22,8 +22,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build
+      - name: Debootstrap
         run: |
+          export DEBIAN_FRONTEND=noninteractive
           sudo apt-get satisfy -yqq debian-archive-keyring debootstrap
           export IMAGE TAG SOURCE AUTHORS DESCRIPTION
           buildah unshare ./buildah-from-scratch
