@@ -10,6 +10,7 @@ cat > /etc/default/locale <<< "C.UTF-8"
 dpkg-reconfigure locales
 
 cat > /etc/apt/apt.conf.d/00no-recommends << EOF
+APT::Keep-Downloaded-Packages "false;
 APT::Install-Recommends "false";
 APT::Install-Suggests "false";
 EOF
@@ -20,4 +21,6 @@ apt-get -qqo Dpkg::Use-Pty=0 satisfy \
     dpkg-dev lintian
 
 # apt-get clean
-dpkg -P apt
+# dpkg -P apt
+
+rm -vrf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
