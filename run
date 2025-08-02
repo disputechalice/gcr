@@ -5,9 +5,9 @@ export DEBIAN_FRONTEND=noninteractive
 ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
 dpkg-reconfigure tzdata
 
-cat > /etc/locale.gen <<< "C.UTF-8 UTF-8"
-cat > /etc/default/locale <<< "C.UTF-8"
-dpkg-reconfigure locales
+# cat > /etc/locale.gen <<< "C.UTF-8 UTF-8"
+# cat > /etc/default/locale <<< "C.UTF-8"
+# dpkg-reconfigure locales
 
 cat > /etc/apt/apt.conf.d/00no-recommends << EOF
 APT::Install-Recommends "false";
