@@ -22,10 +22,13 @@ buildah config \
     --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     --env LC_ALL=C.UTF-8 \
     --env LANG=C.UTF-8 \
-    --user worker:worker \
     "$container"
 
 buildah run "$container" bash -exc "$(cat run)"
+
+buildah config \
+    --user worker:worker \
+    "$container"
 
 buildah commit --format docker "$container" working-image
 
