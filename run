@@ -18,3 +18,5 @@ rm -vf /etc/apt/apt.conf.d/70debconf
 apt-get -qq update
 apt-get -qqo Dpkg::Use-Pty=0 satisfy \
     wget
+
+apt-get clean
