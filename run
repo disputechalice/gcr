@@ -11,16 +11,20 @@ dpkg-reconfigure locales
 
 cat > /etc/apt/apt.conf.d/00container << EOF
 
-APT::Install-Recommends "false";
-APT::Install-Suggests "false";
+Dpkg::Use-Pty "0";
 
-Binary::apt-get::APT::Keep-Downloaded-Packages "false";
+Binary::apt-get {
+    quiet "2";
+    APT::Install-Recommends "false";
+    APT::Install-Suggests "false";
+    APT::Keep-Downloaded-Packages "false";
+}
 EOF
 
 rm -vf /etc/apt/apt.conf.d/70debconf
 
-apt-get -qq update
-apt-get -qqo Dpkg::Use-Pty=0 satisfy \
+apt-get update
+apt-get satisfy \
     dpkg-dev lintian
 
 # apt-get clean
