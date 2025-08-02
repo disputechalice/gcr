@@ -11,7 +11,7 @@ mountpoint=$(buildah mount "$container")
 
 debootstrap --force-check-gpg \
     --variant=minbase \
-    --include=bash,wget \
+    --include=locales,bash,wget \
     bookworm \
     "$mountpoint"
 
