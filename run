@@ -32,3 +32,6 @@ apt-get satisfy \
 dpkg --purge apt
 
 # rm -vrf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
+
+groupadd -g 1000 worker
+useradd --create-home --no-log-init -u 1000 -g 1000 worker
