@@ -34,4 +34,4 @@ dpkg --purge apt
 # rm -vrf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
 
 # groupadd -g 1000 worker
-useradd --no-create-home --no-log-init -u 1000 worker
+useradd --no-create-home --no-log-init -u 1001 worker
