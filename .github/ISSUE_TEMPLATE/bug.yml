@@ -16,7 +16,7 @@ body:
   - type: textarea
     id: system-versions
     attributes:
-      label: Detailed version information from the system:
+      label: "Detailed version information from the system:"
       description: Run: `apt list proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui`
       render: shell
   - type: dropdown
