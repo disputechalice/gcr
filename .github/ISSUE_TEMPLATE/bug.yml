@@ -15,15 +15,15 @@ body:
     id: versions
     attributes:
       label: "Version information from the system:"
-      description: "Run `apt list free-pmx-no-subscription proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui`"
-      placeholder: "Run the command above in the terminal and paste its output here."
+      description: "Run the command below in the terminal and paste its output here."
+      placeholder: "Run the command below in the terminal and paste its output here."
       render: shell
     validations:
-      required: false
+      required: true
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report!
+        `apt list free-pmx-no-subscription proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui`
   - type: dropdown
     id: version
     attributes:
