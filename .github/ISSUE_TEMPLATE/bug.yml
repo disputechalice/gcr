@@ -6,7 +6,7 @@ body:
   - type: checkboxes
     id: system
     attributes:
-      label: "The affected system(s):"
+      label: "System(s):"
       description: "Issue experienced with install on:"
       options:
         - label: PVE
@@ -18,7 +18,8 @@ body:
     id: versions
     attributes:
       label: "Detailed version information from the system:"
-      description: "Run: `apt list free-pmx-no-subscription proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui`"
+      description: "Run the command below and paste its output here."
+      placeholder: apt list free-pmx-no-subscription proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui:
       render: shell
     validations:
       required: false
