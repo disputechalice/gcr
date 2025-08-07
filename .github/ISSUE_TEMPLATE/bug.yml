@@ -24,9 +24,8 @@ body:
     id: tool-version
     attributes:
       label: Version
-      description: How can we get in touch with you if we need more info?
+      description: Run: `apt list free-pmx-no-subscription`
       placeholder: free-pmx-no-subscription/now 0.3.0~pre2 all [installed,local]
-      render: shell
     validations:
       required: false
   - type: dropdown
