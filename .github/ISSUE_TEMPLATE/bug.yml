@@ -1,32 +1,33 @@
 name: Bug
 description: Experienced other than expected behaviour.
-title: Concise but specific issue description
+title: brief & specific
 labels: ["bug"]
 body:
-  - type: dropdown
-    id: product
+  - type: checkboxes
+    id: system
     attributes:
-      label: Installation (multi-select)
-      description: Which system was it installed on?
-      multiple: true
-      options:
-        - PVE
-        - PBS
-        - PMG
-      default: 0
-    validations:
-      required: true
+      label: The affected system(s):
+      description: Issue experienced with install on:
+        - label: PVE
+        - label: PBS
+        - label: PMG
+          required: true
+  - type: textarea
+    id: system-versions
+    attributes:
+      label: Detailed version information from the system:
+      description: Run: `apt list proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui`
+      render: shell
   - type: dropdown
     id: version
     attributes:
       label: Version
-      description: Version of the tool itself.
+      description: Version of the tool used. Check with `apt policy <package>`.
       options:
         - 0.3.0~pre2
         - 0.3.0~pre1
         - 0.2.0
         - other
-      default: 0
     validations:
       required: true
   - type: dropdown
