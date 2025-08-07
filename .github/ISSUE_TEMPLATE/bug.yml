@@ -7,7 +7,7 @@ body:
     id: system
     attributes:
       label: "The affected system(s):"
-      description: Issue experienced with install on:
+      description: "Issue experienced with install on:"
         - label: PVE
         - label: PBS
         - label: PMG
