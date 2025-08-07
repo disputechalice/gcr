@@ -1,12 +1,12 @@
 name: Bug
-description: Experienced other than expected behaviour.
-title: brief & specific
+description: "Experienced other than expected behaviour."
+title: "brief & specific"
 labels: ["bug"]
 body:
   - type: checkboxes
     id: system
     attributes:
-      label: The affected system(s):
+      label: "The affected system(s):"
       description: Issue experienced with install on:
         - label: PVE
         - label: PBS
