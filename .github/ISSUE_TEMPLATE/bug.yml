@@ -20,6 +20,14 @@ body:
       label: "Detailed version information from the system:"
       description: "Run: 'apt list proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui'"
       render: shell
+  - type: input
+    id: tool-version
+    attributes:
+      label: Version
+      description: How can we get in touch with you if we need more info?
+      placeholder: free-pmx-no-subscription/now 0.3.0~pre2 all [installed,local]
+    validations:
+      required: false
   - type: dropdown
     id: version
     attributes:
@@ -32,28 +40,10 @@ body:
         - other
     validations:
       required: true
-  - type: dropdown
-    id: browsers
-    attributes:
-      label: What browsers are you seeing the problem on?
-      multiple: true
-      options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
   - type: markdown
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
-  - type: input
-    id: contact
-    attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
-    validations:
-      required: false
   - type: textarea
     id: what-happened
     attributes:
