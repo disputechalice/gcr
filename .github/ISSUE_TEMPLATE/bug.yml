@@ -12,7 +12,7 @@ body:
         - label: PVE
         - label: PBS
         - label: PMG
-          required: true
+      required: true
   - type: textarea
     id: system-versions
     attributes:
