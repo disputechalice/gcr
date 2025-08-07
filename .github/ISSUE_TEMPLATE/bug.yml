@@ -17,7 +17,7 @@ body:
     id: system-versions
     attributes:
       label: "Detailed version information from the system:"
-      description: Run: `apt list proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui`
+      description: Run: 'apt list proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui'
       render: shell
   - type: dropdown
     id: version
