@@ -19,7 +19,7 @@ body:
     attributes:
       label: "Detailed version information from the system:"
       description: "Run the command below and paste its output here."
-      placeholder: apt list free-pmx-no-subscription proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui:
+      placeholder: "apt list free-pmx-no-subscription proxmox-widget-toolkit pve-manager proxmox-backup-server pmg-gui"
       render: shell
     validations:
       required: false
