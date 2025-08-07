@@ -1,10 +1,25 @@
-name: Bug Report
-description: File a bug report.
-title: "[Bug]: "
+name: Bug
+description: Other than expected behaviour.
+title: ""
 labels: ["bug"]
 assignees:
   - disputechalice
 body:
+  - type: dropdown
+    id: version
+    attributes:
+      label: Tool version
+      description: Version of the tool itself.
+      options:
+        - 0.1.x
+        - 0.1.2
+        - 0.2.0
+        - 0.3.0~pre1
+        - 0.3.0~pre2
+        
+      default: 0
+    validations:
+      required: true
   - type: markdown
     attributes:
       value: |
