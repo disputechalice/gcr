@@ -12,8 +12,8 @@ body:
         - label: PVE
         - label: PBS
         - label: PMG
-      validations:
-        required: true
+    validations:
+      required: true
   - type: textarea
     id: system-versions
     attributes:
