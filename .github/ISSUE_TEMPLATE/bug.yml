@@ -9,10 +9,10 @@ body:
       label: "The affected system(s):"
       description: "Issue experienced with install on:"
       options:
-        - label: PVE
-        - label: PBS
-        - label: PMG
-        required: true
+      - label: PVE
+      - label: PBS
+      - label: PMG
+      required: true
   - type: textarea
     id: system-versions
     attributes:
