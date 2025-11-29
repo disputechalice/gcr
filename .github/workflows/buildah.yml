@@ -24,6 +24,11 @@ jobs:
 
       - name: Build container image
         run: |
+          export DEBIAN_FRONTEND=noninteractive
+          sudo apt-get -qq update
+          sudo apt-get -qqo Dpkg::Use-Pty=0 satisfy \
+            debian-archive-keyring debootstrap
+
           export IMAGE TAG SOURCE AUTHORS DESCRIPTION
           buildah unshare ./build
 
