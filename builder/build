@@ -15,7 +15,6 @@ mkdir "$mountpoint"/mnt
 mount --bind builder "$mountpoint"/mnt
 
 debootstrap \
-    --quiet \
     --force-check-gpg \
     --variant=minbase \
     --include=tzdata,locales,bash \
