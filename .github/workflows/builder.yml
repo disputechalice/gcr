@@ -42,7 +42,7 @@ jobs:
           buildah unshare builder/build
 
       - name: Check if container runnable
-        run: podman run --pull=never "$IMAGE:$TAG" uname -a
+        run: podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release
 
       - name: Push to Registry
         run: |
