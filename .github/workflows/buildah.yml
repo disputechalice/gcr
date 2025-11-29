@@ -19,13 +19,6 @@ jobs:
       packages: write
 
     steps:
-      - name: Prep Debian archive keyring, debootstrap
-        run: |
-          export DEBIAN_FRONTEND=noninteractive
-          sudo apt-get -qq update
-          sudo apt-get -qqo Dpkg::Use-Pty=0 satisfy \
-            debian-archive-keyring debootstrap
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
