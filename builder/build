@@ -1,6 +1,8 @@
 #!/bin/bash
-set -ex
+set -e
 
+[[ -n $IMAGE ]]
+[[ -n $TAG ]]
 [[ -n $SOURCE ]]
 [[ -n $AUTHORS ]]
 [[ -n $DESCRIPTION ]]
@@ -16,7 +18,6 @@ debootstrap --force-check-gpg \
     "$mountpoint"
 
 mount --bind builder "$mountpoint"/mnt
-ls -la "$mountpoint"/mnt
 
 buildah config \
     --label "org.opencontainers.image.source=$SOURCE" \
@@ -33,6 +34,6 @@ buildah config \
     --user worker:worker \
     "$container"
 
-buildah commit --format docker "$container" working-image
+buildah commit --format docker "$container" builder
 
-buildah tag working-image "$IMAGE:$TAG"
+buildah tag builder "$IMAGE:$TAG"
