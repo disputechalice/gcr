@@ -24,7 +24,7 @@ jobs:
       - name: Build container image
         run: |
           ls -la /etc/apt/apt.conf.d/
-          cat /etc/apt/apt.conf.d/99-github-actions
+          cat /etc/apt/apt.conf.d/99github-actions
         
           export DEBIAN_FRONTEND=noninteractive
           sudo apt-get -qq update
