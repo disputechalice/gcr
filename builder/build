@@ -11,27 +11,29 @@ container=$(buildah from scratch)
 
 mountpoint=$(buildah mount "$container")
 
-debootstrap --force-check-gpg \
+mkdir "$mountpoint"/mnt
+mount --bind builder "$mountpoint"/mnt
+
+debootstrap \
+    --force-check-gpg \
     --variant=minbase \
     --include=tzdata,locales,bash \
     trixie \
     "$mountpoint"
 
-mount --bind builder "$mountpoint"/mnt
-
 buildah config \
-    --label "org.opencontainers.image.source=$SOURCE" \
-    --label "org.opencontainers.image.authors=$AUTHORS" \
-    --label "org.opencontainers.image.description=$DESCRIPTION" \
     --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     --env LC_ALL=C.UTF-8 \
     --env LANG=C.UTF-8 \
+    --user worker:worker \
     "$container"
 
 buildah run "$container" /mnt/run
 
 buildah config \
-    --user worker:worker \
+    --label "org.opencontainers.image.source=$SOURCE" \
+    --label "org.opencontainers.image.authors=$AUTHORS" \
+    --label "org.opencontainers.image.description=$DESCRIPTION" \
     "$container"
 
 buildah commit --format docker "$container" builder
