@@ -1,7 +1,6 @@
 name: Publish buildah
 on:
   workflow_dispatch:
-  push:
 
 env:
   IMAGE: ghcr.io/${{ github.repository }}
@@ -24,6 +23,8 @@ jobs:
 
       - name: Build container image
         run: |
+          ls -la /etc/apt/apt.conf.d/
+        
           export DEBIAN_FRONTEND=noninteractive
           sudo apt-get -qq update
           sudo apt-get -qqo Dpkg::Use-Pty=0 satisfy \
