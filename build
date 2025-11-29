@@ -16,7 +16,7 @@ debootstrap --force-check-gpg \
     "$mountpoint"
 
 mount --bind . "$mountpoint"/mnt
-cp /mnt/run /
+ls -la "$mountpoint"/mnt
 
 buildah config \
     --label "org.opencontainers.image.source=$SOURCE" \
