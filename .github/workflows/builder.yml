@@ -1,4 +1,4 @@
-name: Publish buildah
+name: Create builder container image
 on:
   workflow_dispatch:
 
@@ -24,6 +24,7 @@ jobs:
       - name: Build container image
         run: |
           ls -la /etc/apt/apt.conf.d/
+          cat /etc/apt/apt.conf.d/*
         
           export DEBIAN_FRONTEND=noninteractive
           sudo apt-get -qq update
