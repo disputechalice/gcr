@@ -37,14 +37,13 @@ jobs:
           buildah unshare builder/build
 
       - name: Run check
-        run: podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release
+        run: podman run --pull=never "$IMAGE:$TAG" uname -a
 
       - name: Log in to Registry
-        uses: redhat-actions/podman-login@v1.7
-        with:
-          username: ${{ github.actor }}
-          password:  ${{ github.token }}
-          registry: ghcr.io/${{ github.repository_owner }}
+        run: |
+          buildah login ghcr.io \
+            -u "${{ github.actor }}" \
+            --password-stdin <<< "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Push to Registry
         run: buildah push "$IMAGE:$TAG"
