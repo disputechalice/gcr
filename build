@@ -9,6 +9,11 @@ container=$(buildah from scratch)
 
 mountpoint=$(buildah mount "$container")
 
+export DEBIAN_FRONTEND=noninteractive
+sudo apt-get -qq update
+sudo apt-get -qqo Dpkg::Use-Pty=0 satisfy \
+    debian-archive-keyring debootstrap
+
 debootstrap --force-check-gpg \
     --variant=minbase \
     --include=tzdata,locales,bash \
