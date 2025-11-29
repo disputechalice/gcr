@@ -16,6 +16,9 @@ jobs:
     permissions:
       contents: read
       packages: write
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - name: Checkout Repository
