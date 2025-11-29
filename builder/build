@@ -14,7 +14,7 @@ mountpoint=$(buildah mount "$container")
 debootstrap --force-check-gpg \
     --variant=minbase \
     --include=tzdata,locales,bash \
-    bookworm \
+    trixie \
     "$mountpoint"
 
 mount --bind builder "$mountpoint"/mnt
