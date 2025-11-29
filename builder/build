@@ -27,7 +27,7 @@ buildah config \
     --env LANG=C.UTF-8 \
     "$container"
 
-buildah run "$container" bash -exc "$(cat run)"
+buildah run "$container" /mnt/run
 
 buildah config \
     --user worker:worker \
