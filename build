@@ -9,6 +9,10 @@ container=$(buildah from scratch)
 
 mountpoint=$(buildah mount "$container")
 
+mount --bind . "$mountpoint"/mnt
+
+cp /mnt/run /
+
 debootstrap --force-check-gpg \
     --variant=minbase \
     --include=tzdata,locales,bash \
