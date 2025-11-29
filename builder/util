@@ -1,7 +1,8 @@
 
 init_apt() {
+  rm -vf /etc/apt/apt.conf.d/*
 
-  cat /etc/apt/apt.conf << EOF
+  cat /etc/apt/apt.conf < EOF
 Binary::apt-get {
     quiet "2";
     APT::Get::Assume-Yes "true";
@@ -17,4 +18,7 @@ Dpkg::Options {
 
 Dpkg::Use-Pty "0";
 EOF
+
+  export DEBIAN_FRONTEND=noninteractive        
+  apt-get update
 }
