@@ -9,17 +9,7 @@ cat > /etc/locale.gen <<< "C.UTF-8 UTF-8"
 cat > /etc/default/locale <<< "C.UTF-8"
 dpkg-reconfigure locales
 
-cat > /etc/apt/apt.conf.d/00container << EOF
-
-Dpkg::Use-Pty "0";
-
-Binary::apt-get {
-    quiet "2";
-    APT::Install-Recommends "false";
-    APT::Install-Suggests "false";
-    APT::Keep-Downloaded-Packages "false";
-}
-EOF
+cat /mnt/apt.conf > /etc/apt/apt.conf.d/99-custom
 
 rm -vf /etc/apt/apt.conf.d/70debconf
 
