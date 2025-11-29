@@ -14,7 +14,9 @@ cp /mnt/apt.conf /etc/apt/apt.conf
 
 apt-get update
 apt-get satisfy \
-    wget dpkg-dev lintian
+    wget \
+    dpkg-dev \
+    lintian
 
 # apt-get clean
 
