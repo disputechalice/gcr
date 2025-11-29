@@ -24,7 +24,7 @@ jobs:
       - name: Build container image
         run: |
           sudo rm -vf /etc/apt/apt.conf.d/*
-          sudo cat builder/apt.conf /etc/apt/apt.conf.d/custom
+          sudo cat builder/apt.conf > /etc/apt/apt.conf.d/custom
           
           sudo apt-get update
           sudo apt-get satisfy \
