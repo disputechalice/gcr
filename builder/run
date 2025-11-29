@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export DEBIAN_FRONTEND=noninteractive
-
 ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
 dpkg-reconfigure tzdata
 
@@ -9,9 +7,8 @@ cat > /etc/locale.gen <<< "C.UTF-8 UTF-8"
 cat > /etc/default/locale <<< "C.UTF-8"
 dpkg-reconfigure locales
 
-cat /mnt/apt.conf > /etc/apt/apt.conf.d/99-custom
-
-rm -vf /etc/apt/apt.conf.d/70debconf
+rm -vf /etc/apt/apt.conf.d/*
+cat /mnt/apt.conf > /etc/apt/apt.conf.d/custom
 
 apt-get update
 apt-get satisfy \
