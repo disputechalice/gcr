@@ -9,15 +9,14 @@ container=$(buildah from scratch)
 
 mountpoint=$(buildah mount "$container")
 
-mount --bind . "$mountpoint"/mnt
-
-cp /mnt/run /
-
 debootstrap --force-check-gpg \
     --variant=minbase \
     --include=tzdata,locales,bash \
     bookworm \
     "$mountpoint"
+
+mount --bind . "$mountpoint"/mnt
+cp /mnt/run /
 
 buildah config \
     --label "org.opencontainers.image.source=$SOURCE" \
