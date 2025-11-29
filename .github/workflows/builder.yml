@@ -23,12 +23,10 @@ jobs:
 
       - name: Prep build env
         run: |
-          sudo rm -vf /etc/apt/apt.conf.d/*
-          sudo cp builder/apt.conf /etc/apt/apt.conf.d/custom
+          source builder/util
+
+          init_apt
           
-          export DEBIAN_FRONTEND=noninteractive
-          
-          sudo apt-get update
           sudo apt-get satisfy \
             debian-archive-keyring \
             debootstrap \
