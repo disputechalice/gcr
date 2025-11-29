@@ -21,7 +21,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build container image
+      - name: Prep build env
         run: |
           sudo rm -vf /etc/apt/apt.conf.d/*
           sudo cp builder/apt.conf /etc/apt/apt.conf.d/custom
@@ -31,19 +31,22 @@ jobs:
           sudo apt-get update
           sudo apt-get satisfy \
             debian-archive-keyring \
-            debootstrap
+            debootstrap \
+            buildah \
+            podman
 
+      - name: Build container image
+        run: |
           export IMAGE TAG SOURCE AUTHORS DESCRIPTION
           buildah unshare builder/build
 
-      - name: Run check
+      - name: Check if container runnable
         run: podman run --pull=never "$IMAGE:$TAG" uname -a
 
-      - name: Log in to Registry
+      - name: Push to Registry
         run: |
           buildah login ghcr.io \
             -u "${{ github.actor }}" \
             --password-stdin <<< "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Push to Registry
-        run: buildah push "$IMAGE:$TAG"
+          buildah push "$IMAGE:$TAG"
