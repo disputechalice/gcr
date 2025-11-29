@@ -30,7 +30,7 @@ jobs:
             debian-archive-keyring debootstrap
 
           export IMAGE TAG SOURCE AUTHORS DESCRIPTION
-          buildah unshare ./build
+          buildah unshare builder/build
 
       - name: Run check
         run: podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release
