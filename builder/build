@@ -15,7 +15,7 @@ debootstrap --force-check-gpg \
     bookworm \
     "$mountpoint"
 
-mount --bind . "$mountpoint"/mnt
+mount --bind builder "$mountpoint"/mnt
 ls -la "$mountpoint"/mnt
 
 buildah config \
