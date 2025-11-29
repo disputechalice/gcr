@@ -10,7 +10,7 @@ cat > /etc/default/locale <<< "C.UTF-8"
 dpkg-reconfigure locales
 
 rm -vf /etc/apt/apt.conf.d/*
-cp /mnt/apt.conf /etc/apt/apt.conf.d/custom
+cp /mnt/apt.conf /etc/apt/apt.conf
 
 apt-get update
 apt-get satisfy \
