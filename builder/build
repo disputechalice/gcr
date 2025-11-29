@@ -25,12 +25,12 @@ buildah config \
     --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     --env LC_ALL=C.UTF-8 \
     --env LANG=C.UTF-8 \
-    --user worker:worker \
     "$container"
 
 buildah run "$container" /mnt/run
 
 buildah config \
+    --user worker:worker \
     --label "org.opencontainers.image.source=$SOURCE" \
     --label "org.opencontainers.image.authors=$AUTHORS" \
     --label "org.opencontainers.image.description=$DESCRIPTION" \
