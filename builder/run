@@ -15,9 +15,7 @@ cp -v /mnt/apt.conf /etc/apt/apt.conf
 
 apt-get update
 apt-get satisfy \
-    wget \
-    dpkg-dev \
-    lintian
+    wget
 
 rm -vrf /var/log/apt
 dpkg --purge apt
