@@ -51,6 +51,9 @@ jobs:
             -u "${{ github.actor }}" \
             --authfile ~/.docker/config.json \
             --password-stdin <<< "${{ secrets.GITHUB_TOKEN }}"
+  
+      - name: Push
+        run: buildah push "$IMAGE:$TAG"
 
       - name: Prep cosign
         uses: sigstore/cosign-installer@v3.4.0
@@ -64,5 +67,4 @@ jobs:
             --type urn:custom:custom-build \
             --predicate builder/build.json \
             "$IMAGE:$TAG"
-          buildah push "$IMAGE:$TAG"
 
