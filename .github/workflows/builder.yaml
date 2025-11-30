@@ -59,9 +59,7 @@ jobs:
           "docker://$IMAGE:$TAG"
 
       - name: Prep cosign
-        uses: sigstore/cosign-installer@v3.4.0
-        with:
-          cosign-release: v2.6.0
+        uses: sigstore/cosign-installer@v4.0.0
       - name: Attest
         env:
           COSIGN_EXPERIMENTAL: "1"
