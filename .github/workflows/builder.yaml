@@ -64,10 +64,11 @@ jobs:
       - name: Attest
         env:
           COSIGN_EXPERIMENTAL: "1"
+          COSIGN_REPOSITORY_USERNAME: ${{ github.actor }}
+          COSIGN_REPOSITORY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
           DIGEST=$(cat builder.sha256sum)
           cosign attest \
-            --authfile "$HOME"/.config/containers/auth.json \
             --tlog-upload=false \
             --type urn:custom:custom-build \
             --predicate builder/build.json \
