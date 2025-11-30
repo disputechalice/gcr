@@ -58,5 +58,5 @@ jobs:
           cosign attest \
             --type urn:custom:custom-build \
             --predicate builder/build \
-            ghcr.io/${{ github.repository }}/"$IMAGE:$TAG"
+            ghcr.io/"${{ github.actor }}/${{ github.repository }}/"$IMAGE:$TAG"
 
