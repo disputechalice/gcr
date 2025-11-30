@@ -14,9 +14,6 @@ mountpoint=$(buildah mount "$container")
 mkdir "$mountpoint"/mnt
 mount --bind builder "$mountpoint"/mnt
 
-mkdir -p "$mountpoint"/dev/pts
-mount -t devpts devpts "$mountpoint"/dev/pts -o gid=5,mode=666
-
 debootstrap \
     --force-check-gpg \
     --variant=minbase \
