@@ -15,7 +15,7 @@ mkdir "$mountpoint"/mnt
 mount --bind builder "$mountpoint"/mnt
 
 mkdir -p "$mountpoint"/dev/pts
-mount -t devpts devpts "$mnt"/dev/pts -o gid=5,mode=666
+mount -t devpts devpts "$mountpoint"/dev/pts -o gid=5,mode=666
 
 debootstrap \
     --force-check-gpg \
