@@ -52,7 +52,9 @@ jobs:
             --password-stdin <<< "${{ secrets.GITHUB_TOKEN }}"
   
       - name: Push
-        run: buildah push "$IMAGE:$TAG"
+        run: buildah push \
+          --digestfile /tmp/builder.sha256sum
+          "$IMAGE:$TAG"
 
       - name: Prep cosign
         uses: sigstore/cosign-installer@v3.4.0
@@ -60,10 +62,12 @@ jobs:
       - name: Attest
         env:
           COSIGN_EXPERIMENTAL: "1"
-        run: |        
+        run: |
+          DIGEST=$(cat tmp/builder.sha256sum)
+          echo "DIGEST: $DIGEST"
           cosign attest \
             --tlog-upload=false \
             --type urn:custom:custom-build \
             --predicate builder/build.json \
-            "$IMAGE:$TAG"
+            "$IMAGE:$DIGEST"
 
