@@ -55,6 +55,7 @@ jobs:
         run: |
           buildah login ghcr.io \
             -u "${{ github.actor }}" \
+            --authfile ~/.docker/config.json \
             --password-stdin <<< "${{ secrets.GITHUB_TOKEN }}"
 
           buildah push "$IMAGE:$TAG"
