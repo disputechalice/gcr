@@ -61,8 +61,7 @@ jobs:
       - name: Prep cosign
         uses: sigstore/cosign-installer@v3.4.0
         with:
-          version: "2.6.0"
-
+          cosign-release: v2.6.0
       - name: Attest
         env:
           COSIGN_EXPERIMENTAL: "1"
