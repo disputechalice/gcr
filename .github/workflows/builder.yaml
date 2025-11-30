@@ -45,14 +45,12 @@ jobs:
       - name: Check if container runnable
         run: podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release
 
-      - name: Push to Registry
+      - name: Login to Registry
         run: |
           buildah login ghcr.io \
             -u "${{ github.actor }}" \
             --authfile ~/.docker/config.json \
             --password-stdin <<< "${{ secrets.GITHUB_TOKEN }}"
-
-          buildah push "$IMAGE:$TAG"
 
       - name: Prep cosign
         uses: sigstore/cosign-installer@v3.4.0
@@ -60,9 +58,11 @@ jobs:
       - name: Attest
         env:
           COSIGN_EXPERIMENTAL: "1"
-        run: |
+        run: |        
           cosign attest \
             --tlog-upload=false \
             --type urn:custom:custom-build \
             --predicate builder/build.json \
             "$IMAGE:$TAG"
+          buildah push "$IMAGE:$TAG"
+
