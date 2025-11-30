@@ -53,6 +53,6 @@ jobs:
           buildah push "$IMAGE:$TAG"
 
           cosign attest --type custom-build \
-            --predicate my-custom-provenance.json \
+            --predicate builder/build \
             gcr.io/${{ github.actor }}/"$IMAGE:$TAG"
 
