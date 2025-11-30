@@ -53,7 +53,7 @@ jobs:
   
       - name: Push
         run: buildah push \
-          --digestfile builder.sha256sum
+          --digestfile builder.sha256sum \
           "$IMAGE:$TAG"
 
       - name: Prep cosign
