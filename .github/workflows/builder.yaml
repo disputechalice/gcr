@@ -64,6 +64,7 @@ jobs:
       - name: Attest
         env:
           COSIGN_EXPERIMENTAL: "1"
+          COSIGN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
           DIGEST=$(cat builder.sha256sum)
           cosign attest \
