@@ -20,7 +20,7 @@ jobs:
     defaults:
       run:
         shell: bash
-
+        
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -45,9 +45,6 @@ jobs:
       - name: Check if container runnable
         run: podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release
 
-      - name: Install cosign
-        uses: sigstore/cosign-installer@v3.4.0
-
       - name: Push to Registry
         run: |
           buildah login ghcr.io \
@@ -56,6 +53,9 @@ jobs:
             --password-stdin <<< "${{ secrets.GITHUB_TOKEN }}"
 
           buildah push "$IMAGE:$TAG"
+
+      - name: Prep cosign
+        uses: sigstore/cosign-installer@v3.4.0
 
       - name: Attest
         env:
