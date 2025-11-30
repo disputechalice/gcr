@@ -49,12 +49,12 @@ jobs:
         run: |
           buildah login ghcr.io \
             -u "${{ github.actor }}" \
+            --authfile "$HOME/.docker/config.json" \
             --password-stdin <<< "${{ secrets.GITHUB_TOKEN }}"
   
       - name: Push
         run: |
           buildah push \
-          --authfile "$HOME/.docker/config.json" \
           --digestfile builder.sha256sum \
           "$IMAGE:$TAG"
       - name: Prep cosign
