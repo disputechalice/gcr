@@ -54,6 +54,7 @@ jobs:
       - name: Push
         run: |
           buildah push \
+          --authfile "$HOME/.docker/config.json" \
           --digestfile builder.sha256sum \
           "$IMAGE:$TAG" \
           "docker://$IMAGE:$TAG"
@@ -66,7 +67,6 @@ jobs:
         run: |
           DIGEST=$(cat builder.sha256sum)
           cosign attest \
-            --authfile "$HOME/.config/containers/auth.json" \
             --tlog-upload=false \
             --type urn:custom:custom-build \
             --predicate builder/build.json \
