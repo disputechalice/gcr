@@ -1,3 +1,3 @@
 Nothing to be seen here.
 
-[![Build & Publish](https://github.com/disputechalice/gcr/actions/workflows/builder.yml/badge.svg)](https://github.com/disputechalice/gcr/actions/workflows/builder.yml)
+[![Build & Publish](https://github.com/disputechalice/builder/actions/workflows/builder.yaml/badge.svg)](https://github.com/disputechalice/builder/actions/workflows/builder.yaml)
