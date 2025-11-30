@@ -60,6 +60,7 @@ jobs:
           buildah push "$IMAGE:$TAG"
 
           cosign attest \
+            --tlog-upload=false \
             --type urn:custom:custom-build \
             --predicate builder/build.json \
             "$IMAGE:$TAG"
