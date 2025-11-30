@@ -58,7 +58,8 @@ jobs:
 
       - name: Attest
         run: |
-          cosign attest --type custom-build \
+          cosign attest \
+            --type urn:custom:custom-build \
             --predicate builder/build \
             gcr.io/${{ github.actor }}/"$IMAGE:$TAG"
 
