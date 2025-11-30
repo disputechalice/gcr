@@ -66,10 +66,9 @@ jobs:
           COSIGN_EXPERIMENTAL: "1"
         run: |
           DIGEST=$(cat builder.sha256sum)
-          echo "DIGEST: $DIGEST"
           cosign attest \
             --tlog-upload=false \
             --type urn:custom:custom-build \
             --predicate builder/build.json \
-            "$IMAGE:$DIGEST"
+            "${IMAGE}@${DIGEST}"
 
