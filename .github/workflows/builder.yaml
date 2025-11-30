@@ -54,7 +54,8 @@ jobs:
       - name: Push
         run: buildah push \
           --digestfile builder.sha256sum \
-          "$IMAGE:$TAG"
+          "$IMAGE:$TAG" \
+          "docker://$IMAGE:TAG"
 
       - name: Prep cosign
         uses: sigstore/cosign-installer@v3.4.0
