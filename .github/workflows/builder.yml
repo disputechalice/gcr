@@ -52,6 +52,12 @@ jobs:
 
           buildah push "$IMAGE:$TAG"
 
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3.4.0
+
+
+      - name: Attest
+        run: |
           cosign attest --type custom-build \
             --predicate builder/build \
             gcr.io/${{ github.actor }}/"$IMAGE:$TAG"
