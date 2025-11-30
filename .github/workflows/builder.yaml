@@ -49,8 +49,6 @@ jobs:
         uses: sigstore/cosign-installer@v3.4.0
 
       - name: Push to Registry
-        env:
-          COSIGN_EXPERIMENTAL: "1"
         run: |
           buildah login ghcr.io \
             -u "${{ github.actor }}" \
@@ -59,6 +57,10 @@ jobs:
 
           buildah push "$IMAGE:$TAG"
 
+      - name: Attest
+        env:
+          COSIGN_EXPERIMENTAL: "1"
+        run: |
           cosign attest \
             --tlog-upload=false \
             --type urn:custom:custom-build \
