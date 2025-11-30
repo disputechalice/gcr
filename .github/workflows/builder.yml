@@ -50,7 +50,6 @@ jobs:
 
       - name: Push to Registry
         env:
-          COSIGN_AUTH_JSON: "~/.config/containers/auth.json"
           COSIGN_EXPERIMENTAL: "1"
         run: |
           buildah login ghcr.io \
