@@ -1,4 +1,4 @@
-name: Create builder container image
+name: Build builder
 on:
   workflow_dispatch:
 
