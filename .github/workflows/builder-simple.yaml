@@ -104,6 +104,7 @@ jobs:
           EOF
           
           cosign attest \
+            --offline \
             --no-upload \
             --tlog-upload=false \
             --type urn:custom:custom-build \
