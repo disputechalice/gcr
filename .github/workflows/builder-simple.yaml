@@ -108,7 +108,7 @@ jobs:
             --tlog-upload=false \
             --type urn:custom:custom-build \
             --predicate predicate.json \
-            --output-signature builder.sig \
-            --output-certificate builder.crt \
             "${IMAGE}@${DIGEST}"
+
+          ls -la
 
