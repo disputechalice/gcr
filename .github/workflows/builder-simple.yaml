@@ -90,17 +90,13 @@ jobs:
       - name: Prep cosign
         uses: sigstore/cosign-installer@v4.0.0
 
-      - name: Login to Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Attest
         env:
           COSIGN_EXPERIMENTAL: "1"
         run: |
+
+          docker pull "${IMAGE}@${DIGEST}"
+        
           DIGEST=$(cat image.sha256sum)
 
           cat > predicate.json << EOF
