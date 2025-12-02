@@ -106,11 +106,11 @@ jobs:
           }
           EOF
           
-          cosign attest \
+          cosign sign \
             --no-upload \
-            --tlog-upload=false \
-            --type urn:custom:custom-build \
-            --predicate predicate.json \
+            --tlog-upload=true \
+            --yes \
+            --tlog-url https://tlog.sigstore.dev \
             "${IMAGE}@${DIGEST}"
 
           ls -la
