@@ -3,6 +3,8 @@ on:
   workflow_dispatch:
 
 env:
+  DIST: trixie
+  DEBURL: https://snapshot.debian.org/archive/debian/20251202T083052Z/
   IMAGE: ghcr.io/${{ github.repository }}
   TAG: latest
   SOURCE: ${{ github.event.repository.html_url }}
@@ -39,7 +41,7 @@ jobs:
 
       - name: Build container image
         run: |
-          export IMAGE TAG SOURCE AUTHORS DESCRIPTION
+          export DIST DEBURL IMAGE TAG SOURCE AUTHORS DESCRIPTION
           buildah unshare builder/build
 
       - name: Check if container runnable
