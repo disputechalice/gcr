@@ -37,7 +37,7 @@ jobs:
           sudo apt-config -c "$APT_CONFIG" dump
           echo "-----"
 
-          sudo apt-get -c "$APT_CONFIG" update
+          sudo apt-get -c "$APT_CONFIG" -o Debug::pkgAcquire::Worker=1 update
           sudo apt-get -c "$APT_CONFIG" satisfy \
             debian-archive-keyring \
             debootstrap \
