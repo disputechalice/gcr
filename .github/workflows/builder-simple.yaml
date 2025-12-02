@@ -47,7 +47,7 @@ jobs:
 
       - name: Check if container runnable
         run: |
-          source $(podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release)
+          source <(podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release)
           [[ $ID == debian ]]
           [[ $VERSION_CODENAME == "$DEBIAN_SUITE" ]]
       - name: Login to Registry
