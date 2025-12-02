@@ -94,10 +94,10 @@ jobs:
         env:
           COSIGN_EXPERIMENTAL: "1"
         run: |
-
-          docker pull "${IMAGE}@${DIGEST}"
         
           DIGEST=$(cat image.sha256sum)
+
+          docker pull "${IMAGE}@${DIGEST}"
 
           cat > predicate.json << EOF
           {
