@@ -19,4 +19,6 @@ apt-get satisfy \
 
 dpkg --purge apt
 
+rm -rf /usr/share/{info,doc,man}
+
 useradd --no-create-home --no-log-init -u 1001 worker
