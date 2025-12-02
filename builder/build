@@ -22,7 +22,7 @@ debootstrap \
     --variant=minbase \
     --include=tzdata,locales,bash \
     "$DIST" \
-    "$mountpoint"
+    "$mountpoint" \
     "$DEBURL"
 
 buildah config \
