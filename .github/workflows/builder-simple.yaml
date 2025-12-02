@@ -8,7 +8,7 @@ env:
   IMAGE: ghcr.io/${{ github.repository_owner }}/builder-simple
   TAG: latest
   SOURCE: ${{ github.event.repository.html_url }}
-  AUTHORS: ${{ vars.AUTHORS }}
+  AUTHORS: ${{ github.repository_owner }}
   DESCRIPTION: ${{ vars.DESCRIPTION }}
 
 jobs:
@@ -41,7 +41,7 @@ jobs:
 
       - name: Build container image
         run: |
-          export DIST DEBURL IMAGE TAG SOURCE AUTHORS DESCRIPTION
+          export DEBIAN_URL DEBIAN_SUITE IMAGE TAG SOURCE AUTHORS DESCRIPTION
           buildah unshare builder/build
 
       - name: Check if container runnable
@@ -59,8 +59,10 @@ jobs:
           buildah push \
           --digestfile builder.sha256sum \
           "$IMAGE:$TAG"
+
       - name: Prep cosign
         uses: sigstore/cosign-installer@v4.0.0
+
       - name: Attest
         env:
           COSIGN_EXPERIMENTAL: "1"
