@@ -21,7 +21,7 @@ locale-gen
 
 apt-get update
 apt-get satisfy \
-    bash
+    wget lintian
 
 dpkg --purge apt
 
