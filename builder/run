@@ -9,10 +9,15 @@ export DEBIAN_FRONTEND=noninteractive
 ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
 dpkg-reconfigure tzdata
 
-rm -rf /usr/share/locale/*
+cat > /etc/default/locale <<< "LANG=C.UTF-8"
 cat > /etc/locale.gen <<< "C.UTF-8 UTF-8"
+
+rm -rf /usr/share/locale/*
+cat > /usr/share/locale/locale.alias <<'EOF'
+C           C.UTF-8
+POSIX       C.UTF-8
+EOF
 locale-gen
-cat > /etc/default/locale <<< "C.UTF-8"
 
 apt-get update
 apt-get satisfy \
