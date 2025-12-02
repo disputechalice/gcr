@@ -30,7 +30,7 @@ jobs:
       - name: Prep build environment
         run: |
           [[ -f builder/apt.conf ]]        
-          export APT_CONFIG=$(relpath builder/apt.conf)
+          export APT_CONFIG=$(realpath builder/apt.conf)
           export DEBIAN_FRONTEND=noninteractive
 
           echo "APT config:"
