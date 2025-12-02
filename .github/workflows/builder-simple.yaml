@@ -112,7 +112,6 @@ jobs:
           EOF
           
           cosign sign \
-            --no-upload \
             --tlog-upload=false \
             "${IMAGE}@${DIGEST}"
 
