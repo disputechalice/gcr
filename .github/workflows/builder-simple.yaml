@@ -33,6 +33,10 @@ jobs:
           export APT_CONFIG=builder/apt.conf
           export DEBIAN_FRONTEND=noninteractive
 
+          echo "APT config:"
+          sudo apt-config dump
+          echo "-----"
+        
           sudo apt-get update
           sudo apt-get satisfy \
             debian-archive-keyring \
