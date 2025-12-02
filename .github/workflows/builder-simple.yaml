@@ -53,20 +53,19 @@ jobs:
         run: |
           buildah login ghcr.io \
             -u "${{ github.actor }}" \
-            --authfile "$HOME/.docker/config.json" \
             --password-stdin <<< "${{ secrets.GITHUB_TOKEN }}"
   
       - name: Push
         run: |
           buildah push \
-          --digestfile builder.sha256sum \
-          "$IMAGE:$TAG"
+            --digestfile image.sha256sum \
+            "$IMAGE:$TAG"
 
       - name: Upload digest
         uses: actions/upload-artifact@v4
         with:
-          name: image-digest
-          path: builder.sha256sum
+          name: predicate
+          path: image.sha256sum
 
   sign:
     name: Sign/Attest
@@ -79,7 +78,7 @@ jobs:
       - name: Download digest
         uses: actions/download-artifact@v4
         with:
-          name: image-digest
+          name: predicate
 
       - name: Prep cosign
         uses: sigstore/cosign-installer@v4.0.0
@@ -88,10 +87,11 @@ jobs:
         env:
           COSIGN_EXPERIMENTAL: "1"
         run: |
-          DIGEST=$(cat builder.sha256sum)
+          DIGEST=$(cat image.sha256sum)
+          touch predicate.json
           cosign attest \
             --tlog-upload=false \
             --type urn:custom:custom-build \
-            --predicate builder/build.json \
+            --predicate predicate.json \
             "${IMAGE}@${DIGEST}"
 
