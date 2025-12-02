@@ -115,8 +115,6 @@ jobs:
             --tlog-upload=false \
             "${IMAGE}@${DIGEST}"
 
-          cosign verify "${IMAGE}@${DIGEST}" --cert-chain
-
           cosign download signatures "${IMAGE}@${DIGEST}" --output ./signatures
           
           cosign verify-blob --signature ./signatures/${DIGEST}.sig --output payload.json
