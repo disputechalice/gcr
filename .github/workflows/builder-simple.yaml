@@ -29,16 +29,16 @@ jobs:
 
       - name: Prep build environment
         run: |
-          [[ -f builder/apt.conf ]]        
+          rm -vf /etc/apt/apt.conf /etc/apt/apt.conf.d/*
           export APT_CONFIG=$(realpath builder/apt.conf)
           export DEBIAN_FRONTEND=noninteractive
 
           echo "APT config:"
-          sudo apt-config -c "$APT_CONFIG" dump
+          sudo -E apt-config dump
           echo "-----"
 
-          sudo apt-get -c "$APT_CONFIG" -o Debug::pkgAcquire::Worker=1 update
-          sudo apt-get -c "$APT_CONFIG" satisfy \
+          sudo -E apt-get update
+          sudo -E apt-get satisfy \
             debian-archive-keyring \
             debootstrap \
             buildah \
