@@ -104,14 +104,17 @@ jobs:
         
           DIGEST=$(cat image.sha256sum)
 
-          cat > predicate.json << EOF
+          cat > predicate.json <<EOF
           {
-            "build_id": "1",
+            "build_id": "${GITHUB_RUN_ID}",
+            "commit_sha": "${GITHUB_SHA}",
             "status": "ok"
           }
           EOF
-          
-          cosign sign \
+
+          cosign attest \
+            --type urn:custom:custom-build \
+            --predicate predicate.json \
             --tlog-upload=false \
             "${IMAGE}@${DIGEST}"
 
