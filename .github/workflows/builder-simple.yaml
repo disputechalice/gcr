@@ -90,14 +90,19 @@ jobs:
       - name: Prep cosign
         uses: sigstore/cosign-installer@v4.0.0
 
+
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Attest
         env:
           COSIGN_EXPERIMENTAL: "1"
         run: |
         
           DIGEST=$(cat image.sha256sum)
-
-          docker pull "${IMAGE}@${DIGEST}"
 
           cat > predicate.json << EOF
           {
@@ -108,10 +113,9 @@ jobs:
           
           cosign sign \
             --no-upload \
-            --tlog-upload=true \
-            --yes \
-            --tlog-url https://tlog.sigstore.dev \
+            --tlog-upload=false \
             "${IMAGE}@${DIGEST}"
 
           ls -la
+
 
