@@ -29,7 +29,6 @@ jobs:
 
       - name: Prep build environment
         run: |
-          sudo rm -vf /etc/apt/apt.conf /etc/apt/apt.conf.d/*
           export APT_CONFIG=$(realpath builder/apt.conf)
           export DEBIAN_FRONTEND=noninteractive
 
