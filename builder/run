@@ -19,6 +19,4 @@ apt-get satisfy \
 
 dpkg --purge apt
 
-ls -la /var/cache/apt/archives
-
 useradd --no-create-home --no-log-init -u 1001 worker
