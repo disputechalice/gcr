@@ -7,6 +7,9 @@ set -e
 [[ -n $AUTHORS ]]
 [[ -n $DESCRIPTION ]]
 
+[[ -n $DIST ]]
+[[ -n $DEBURL ]]
+
 container=$(buildah from scratch)
 
 mountpoint=$(buildah mount "$container")
@@ -18,8 +21,9 @@ debootstrap \
     --force-check-gpg \
     --variant=minbase \
     --include=tzdata,locales,bash \
-    trixie \
+    "$DIST" \
     "$mountpoint"
+    "$DEBURL"
 
 buildah config \
     --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
