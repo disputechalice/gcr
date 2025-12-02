@@ -7,8 +7,8 @@ set -e
 [[ -n $AUTHORS ]]
 [[ -n $DESCRIPTION ]]
 
-[[ -n $DIST ]]
-[[ -n $DEBURL ]]
+[[ -n $DEBIAN_SUITE ]]
+[[ -n $DEBIAN_URL ]]
 
 container=$(buildah from scratch)
 
@@ -21,9 +21,9 @@ debootstrap \
     --force-check-gpg \
     --variant=minbase \
     --include=tzdata,locales,bash \
-    "$DIST" \
+    "$DEBIAN_SUITE" \
     "$mountpoint" \
-    "$DEBURL"
+    "$DEBIAN_URL"
 
 buildah config \
     --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
