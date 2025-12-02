@@ -27,11 +27,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Prep build env
+      - name: Prep build environment
         run: |
+          [[ -f builder/apt.conf ]]        
+          export APT_CONFIG=builder/apt.conf
           export DEBIAN_FRONTEND=noninteractive
-          sudo rm -vf /etc/apt/apt.conf.d/*
-          sudo cp builder/apt.conf /etc/apt/apt.conf
+
           sudo apt-get update
           sudo apt-get satisfy \
             debian-archive-keyring \
@@ -45,8 +46,10 @@ jobs:
           buildah unshare builder/build
 
       - name: Check if container runnable
-        run: podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release
-
+        run: |
+          source $(podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release)
+          [[ $ID == debian ]]
+          [[ $VERSION_CODENAME == "$DEBIAN_SUITE" ]]
       - name: Login to Registry
         run: |
           buildah login ghcr.io \
