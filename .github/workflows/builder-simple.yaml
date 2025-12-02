@@ -34,11 +34,11 @@ jobs:
           export DEBIAN_FRONTEND=noninteractive
 
           echo "APT config:"
-          sudo apt-config dump
+          sudo -E apt-config dump
           echo "-----"
         
-          sudo apt-get update
-          sudo apt-get satisfy \
+          sudo -E apt-get update
+          sudo -E apt-get satisfy \
             debian-archive-keyring \
             debootstrap \
             buildah \
