@@ -3,6 +3,7 @@ set -e
 
 [[ -f /mnt/apt.conf ]]
 
+rm -vf /etc/apt/apt.conf /etc/apt/apt.conf.d/*
 export APT_CONFIG=/mnt/apt.conf
 export DEBIAN_FRONTEND=noninteractive
 
