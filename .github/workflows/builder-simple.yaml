@@ -32,10 +32,6 @@ jobs:
           export APT_CONFIG=$(realpath builder/apt.conf)
           export DEBIAN_FRONTEND=noninteractive
 
-          echo "APT config:"
-          sudo -E apt-config dump
-          echo "-----"
-
           sudo -E apt-get update
           sudo -E apt-get satisfy \
             debian-archive-keyring \
