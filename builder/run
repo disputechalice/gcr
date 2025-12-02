@@ -17,9 +17,6 @@ apt-get update
 apt-get satisfy \
     wget
 
-rm -vrf /var/log/apt
 dpkg --purge apt
-
-# rm -vrf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
 
 useradd --no-create-home --no-log-init -u 1001 worker
