@@ -20,7 +20,7 @@ mount --bind builder "$mountpoint"/mnt
 debootstrap \
     --force-check-gpg \
     --variant=minbase \
-    --include=tzdata,locales,bash \
+    --include=locales,tzdata,bash \
     "$DEBIAN_SUITE" \
     "$mountpoint" \
     "$DEBIAN_URL"
