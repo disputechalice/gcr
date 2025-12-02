@@ -44,11 +44,12 @@ jobs:
           export DEBIAN_URL DEBIAN_SUITE IMAGE TAG SOURCE AUTHORS DESCRIPTION
           buildah unshare builder/build
 
-      - name: Check if container runnable
+      - name: Image sanity check
         run: |
           source <(podman run --pull=never "$IMAGE:$TAG" cat /etc/os-release)
           [[ $ID == debian ]]
           [[ $VERSION_CODENAME == "$DEBIAN_SUITE" ]]
+  
       - name: Login to Registry
         run: |
           buildah login ghcr.io \
@@ -68,7 +69,7 @@ jobs:
           path: image.sha256sum
 
   sign:
-    name: Sign/Attest
+    name: Sign
     runs-on: ubuntu-latest
     needs: build-push
     permissions:
