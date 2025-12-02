@@ -116,7 +116,7 @@ jobs:
             "${IMAGE}@${DIGEST}"
 
           cosign verify "${IMAGE}@${DIGEST}" \
-            --certificate-identity="repo:disputechalice/builder-simple:ref:refs/heads/main" \
+            --certificate-identity="https://github.com/disputechalice/builder/.github/workflows/builder-simple.yaml@refs/heads/main" \
             --certificate-oidc-issuer=https://github.com/login/oauth
 
 
