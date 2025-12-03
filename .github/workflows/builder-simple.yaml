@@ -7,7 +7,7 @@ env:
   DEBIAN_SUITE: trixie
   IMAGE: ghcr.io/${{ github.repository_owner }}/builder-simple
   TAG: latest
-  SOURCE: ${{ github.event.repository.html_url }}
+  SOURCE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
   AUTHORS: ${{ github.repository_owner }}
   DESCRIPTION: ${{ vars.DESCRIPTION }}
 
