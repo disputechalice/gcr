@@ -122,7 +122,7 @@ jobs:
             --certificate-identity="https://github.com/disputechalice/builder/.github/workflows/builder-simple.yaml@refs/heads/main" \
             --certificate-oidc-issuer="https://token.actions.githubusercontent.com"
 
-          cosign download signature "${IMAGE}@${DIGEST}" --output-file ./signature
+          cosign download attestation "${IMAGE}@${DIGEST}" --output-file ./signature
 
           cat ./signature
 
